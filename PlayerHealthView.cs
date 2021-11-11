@@ -24,7 +24,7 @@ namespace Assets.Scripts
 
         private void Update()    
         {
-            if (_player.ChangedHealth())
+            if (_player.Changingealth())
             {
                 _currentValue = Player.Health*_normalizedValue;
                 _slider.DOValue(_currentValue, _duratuion);

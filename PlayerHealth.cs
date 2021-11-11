@@ -19,7 +19,7 @@ namespace Assets.Scripts
             _health += heal;
         }
 
-        public bool ChangedHealth()
+        public bool Changingealth()
         {
             if (_previosHealth != _health)
             {
