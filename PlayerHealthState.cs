@@ -4,9 +4,9 @@ namespace Assets.Scripts
 {
     class PlayerHealthState: MonoBehaviour
     {
-        [SerializeField] PlayerModel _player;
-        [SerializeField] float  _damage;
-        [SerializeField] float _heal;
+        [SerializeField] private PlayerHealth _player;
+        [SerializeField] private float  _damage;
+        [SerializeField] private float _heal;
         
         public void GetDamage()
         {
