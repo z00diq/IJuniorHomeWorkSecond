@@ -5,28 +5,29 @@ namespace Assets.Scripts
     class PlayerHealth: MonoBehaviour
     {
         [SerializeField] private float _health;
+        [SerializeField] private float _healDamageValue;
+
         private float _previosHealth;
+        private bool _healthChanged;
 
         public float Health => _health;
 
-        public void GetDamage(float damage)
+        public bool HealthChanged => _healthChanged;
+        public void GetDamage()
         {
-            _health -= damage;
+            _health -= _healDamageValue;
+            _healthChanged = true;
         }
 
-        public void GetHeal(float heal)
+        public void GetHeal()
         {
-            _health += heal;
+            _health += _healDamageValue;
+            _healthChanged = true;
         }
 
-        public bool Changingealth()
+        public void ChangingHealthStatus()
         {
-            if (_previosHealth != _health)
-            {
-                _previosHealth = _health;
-                return true;
-            }
-            return false;
+            _healthChanged = !_healthChanged;
         }
     }
 }
