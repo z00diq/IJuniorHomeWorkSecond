@@ -7,27 +7,22 @@ namespace Assets.Scripts
         [SerializeField] private float _health;
         [SerializeField] private float _healDamageValue;
 
-        private float _previosHealth;
-        private bool _healthChanged;
+        public delegate void ChangeHealth();
+
+        public event ChangeHealth RenderHealth;
 
         public float Health => _health;
 
-        public bool HealthChanged => _healthChanged;
         public void GetDamage()
         {
             _health -= _healDamageValue;
-            _healthChanged = true;
+            RenderHealth?.Invoke();
         }
 
         public void GetHeal()
         {
             _health += _healDamageValue;
-            _healthChanged = true;
-        }
-
-        public void ChangingHealthStatus()
-        {
-            _healthChanged = !_healthChanged;
+            RenderHealth?.Invoke();
         }
     }
 }

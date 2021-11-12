@@ -21,16 +21,13 @@ namespace Assets.Scripts
             _slider = GetComponent<Slider>();
             _slider.value = _slider.maxValue;
             _normalizedValue = _slider.maxValue / Player.Health;
+            _player.RenderHealth += RenderFill;
         }
 
-        private void Update()    
+        private void RenderFill()    
         {
-            if (_player.HealthChanged)
-            {
-                _currentValue = Player.Health*_normalizedValue;
-                _slider.DOValue(_currentValue, _duratuion);
-                _player.ChangingHealthStatus();
-            }
+            _currentValue = Player.Health*_normalizedValue;
+            _slider.DOValue(_currentValue, _duratuion);
         }
     }
 }
