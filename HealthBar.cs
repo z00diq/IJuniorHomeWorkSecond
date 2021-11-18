@@ -18,13 +18,17 @@ namespace Assets.Scripts
         {
             _slider = GetComponent<Slider>();
             _slider.value = _slider.maxValue;
-            _normalizedValue =  _slider.maxValue / _player.CurrentHealth;
-            _player.HealthIsChanged += RenderFill;
+            _normalizedValue =  _slider.maxValue / _player.CurrentHealth;   
+        }
+
+        private void OnEnable()
+        {
+            _player.OnHealthChanged += RenderFill;
         }
 
         private void OnDisable()
         {
-            _player.HealthIsChanged -= RenderFill;
+            _player.OnHealthChanged -= RenderFill;
         }
         private void RenderFill()    
         {
