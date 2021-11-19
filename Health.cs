@@ -10,11 +10,10 @@ namespace Assets.Scripts
 
         private float _maxHealth;
 
-        public delegate void HealthChanger();
-
-        public event UnityAction OnHealthChanged;
+        public event UnityAction HealthChanged;
 
         public float CurrentHealth => _health;
+        public float MaxHealth => _maxHealth;
 
         private void Awake()
         {
@@ -28,7 +27,7 @@ namespace Assets.Scripts
             if (_health < 0)
                 _health = 0;
 
-            OnHealthChanged?.Invoke();
+            HealthChanged?.Invoke();
         }
 
         public void GetHeal()
@@ -38,7 +37,7 @@ namespace Assets.Scripts
             if (_health > _maxHealth)
                 _health = _maxHealth;
 
-            OnHealthChanged?.Invoke();
+            HealthChanged?.Invoke();
         }
     }
 }

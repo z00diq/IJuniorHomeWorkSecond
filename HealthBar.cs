@@ -11,29 +11,28 @@ namespace Assets.Scripts
         [SerializeField] private float _duratuion;
 
         private Slider _slider;
-        private float _currentValue;
-        private float _normalizedValue;
+        private float _normalizedHealth;
 
         private void Awake()
         {
             _slider = GetComponent<Slider>();
             _slider.value = _slider.maxValue;
-            _normalizedValue =  _slider.maxValue / _player.CurrentHealth;   
+               
         }
 
         private void OnEnable()
         {
-            _player.OnHealthChanged += RenderFill;
+            _player.HealthChanged += OnHealthChanged;
         }
 
         private void OnDisable()
         {
-            _player.OnHealthChanged -= RenderFill;
+            _player.HealthChanged -= OnHealthChanged;
         }
-        private void RenderFill()    
+        private void OnHealthChanged()    
         {
-            _currentValue = _player.CurrentHealth * _normalizedValue;
-            _slider.DOValue(_currentValue, _duratuion);
+            _normalizedHealth = _player.CurrentHealth / _player.MaxHealth;
+            _slider.DOValue(_normalizedHealth, _duratuion);
         }
 
     }
